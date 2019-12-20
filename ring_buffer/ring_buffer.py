@@ -5,7 +5,21 @@ class RingBuffer:
     self.storage = [None]*capacity
 
   def append(self, item):
-    pass
-
+    self.storage[self.current] = item
+    if self.current + 1  == self.capacity:
+      self.current = 0
+    else:
+      self.current += 1
   def get(self):
-    pass
+    not_none = [i for i in self.storage if i is not None]
+    return not_none
+
+
+
+
+buffer = RingBuffer(5)
+buffer.append('a')
+buffer.append('b')
+buffer.append('c')
+buffer.append('d')
+print(buffer.get())
